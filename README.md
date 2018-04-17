@@ -1,5 +1,5 @@
 # count-lines-bao
-统计文件行数
+统计文件行数,已排除空行
 
 `count -h` 查看帮助
 
