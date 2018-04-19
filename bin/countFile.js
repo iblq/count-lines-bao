@@ -1,9 +1,9 @@
-let fs = require('fs')
+const fs = require('fs')
 
 let countFile = {
 
   count: function (type) {
-    let filesList = [];
+    let filesList = []
     let lines = 0
     let ext
 
@@ -14,10 +14,9 @@ let countFile = {
       }
     }
 
-
     function geFileList(path) {
-      readFile(path, filesList);
-      return filesList;
+      readFile(path, filesList)
+      return filesList
     }
 
     function readFile(path, filesList) {
@@ -27,7 +26,7 @@ let countFile = {
       function myRead(file) {
         if(file == 'node_modules') return
 
-        let info = fs.statSync(path + '/' + file);
+        let info = fs.statSync(path + '/' + file)
 
         if (info.isDirectory()) { // 文件夹递归查询
           type === 'all' && readFile(path + '/' + file, filesList)
@@ -46,11 +45,6 @@ let countFile = {
 
           function addCount() {
             let ctx = fs.readFileSync(path + '/' + file, "utf8")
-
-            String.prototype.deleteExtraLines=function(){
-              return this.replace(/(^\s*)|(\s*$)/g,'');
-            }
-
             let exg = /\n(\n)*( )*(\n)*\n/g  // 去掉空行
             ctx = ctx.replace(exg, '\n')
             let n = ctx.match(/\n/g) ? ctx.match(/\n/g).length : 0
